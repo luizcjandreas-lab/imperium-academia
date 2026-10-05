@@ -78,7 +78,7 @@ npm run build    # gera a pasta dist/ para publicação
 
 Netlify: mesmo processo, com Build command `npm run build` e Publish directory `dist`.
 
-Depois de ter o domínio definitivo, troque `https://imperium-academia.vercel.app` em `index.html` (canonical, Open Graph e Schema.org).
+Depois de ter o domínio definitivo, troque `https://imperium-academia-five.vercel.app` em `index.html` (canonical, Open Graph e Schema.org).
 
 ## Informações que ainda faltam
 
