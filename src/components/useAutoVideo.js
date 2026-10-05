@@ -34,15 +34,25 @@ export function useAutoVideo(ref, src, threshold = 0.15) {
     const host = v.closest("[data-video-host]");
     if (host) host.addEventListener("mouseenter", start);
 
+    const inView = () => {
+      const r = v.getBoundingClientRect();
+      return r.bottom > 0 && r.top < (window.innerHeight || document.documentElement.clientHeight);
+    };
+
     let io;
     if ("IntersectionObserver" in window) {
       io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : halt()), { threshold });
       io.observe(v);
-    } else {
-      start();
     }
+    // Começa na hora se já estiver visível ao abrir a página.
+    if (!io || inView()) start();
+
+    // Ao voltar para a aba/app, retoma o que estiver na tela.
+    const onVisible = () => { if (document.visibilityState === "visible" && inView()) start(); };
+    document.addEventListener("visibilitychange", onVisible);
 
     return () => {
+      document.removeEventListener("visibilitychange", onVisible);
       if (io) io.disconnect();
       if (host) host.removeEventListener("mouseenter", start);
       v.removeEventListener("playing", onPlaying);
