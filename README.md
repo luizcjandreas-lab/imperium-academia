@@ -32,6 +32,7 @@ imperium-site/
 │       ├── video-jiujitsu.mp4
 │       ├── video-danca.mp4     (trecho de 40 s)
 │       ├── video-muay-thai.mp4
+│       ├── previews/           Prévias curtas (6 s) da vitrine de modalidades
 │       └── images/             Capas e fotos extraídas dos vídeos reais
 └── src/
     ├── config.js              ← WhatsApp, endereço, horários, professores, depoimentos
@@ -58,7 +59,7 @@ imperium-site/
 | Fotos que faltam (jiu-jítsu kids, funcional) | salve em `public/assets/images/` e aponte em `MODALIDADES` (campo `imagem`) |
 | Crédito "Desenvolvido por" | `src/config.js` → `SITE.credito` |
 
-Vídeos: MP4 H.264, até ~6 MB cada. A abertura do início e o vídeo de cada modalidade tocam sozinhos, sem som e em loop, com botões de pausar e ativar o som (não tocam sozinhos em conexão lenta ou com "reduzir movimento"). Na vitrine do início, a prévia em vídeo só carrega quando o mouse passa sobre a modalidade.
+Vídeos: MP4 H.264, até ~6 MB cada. Todos tocam sozinhos, sem som e em loop, no computador e no celular, assim que aparecem na tela (e pausam ao sair, para economizar dados). Na vitrine de modalidades, cada uma toca uma prévia curta de `public/assets/previews/` (6 s, ~300 KB), que também começa ao passar o mouse. Para trocar uma prévia, substitua o arquivo mantendo o nome.
 
 ## Rodar no computador
 

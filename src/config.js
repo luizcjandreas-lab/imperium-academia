@@ -119,6 +119,7 @@ export const PAGINAS = [
     id: "musculacao",
     nome: "Musculação",
     modalidades: ["musculacao"],
+    preview: "assets/previews/musculacao.mp4", // prévia curta da vitrine
     titulo: ["Força se constrói", "um treino por vez."],
     intro: "Construa força, resistência e confiança com treinos alinhados aos seus objetivos. Sala ampla e mezanino com aparelhos aeróbicos.",
     video: "assets/video-ambiente.mp4",
@@ -130,6 +131,7 @@ export const PAGINAS = [
     id: "danca",
     nome: "Dança",
     modalidades: ["danca"],
+    preview: "assets/previews/danca.mp4", // prévia curta da vitrine
     titulo: ["Energia", "que contagia."],
     intro: "Uma aula dinâmica para se movimentar, cuidar da saúde e treinar de um jeito leve e envolvente. Movimento, música e energia para melhorar o seu dia.",
     video: "assets/video-danca.mp4",
@@ -141,6 +143,7 @@ export const PAGINAS = [
     id: "jiu-jitsu",
     nome: "Jiu-jítsu",
     modalidades: ["jiujitsu-adulto", "jiujitsu-kids"],
+    preview: "assets/previews/jiu-jitsu.mp4", // prévia curta da vitrine
     titulo: ["Disciplina que vai", "além do tatame."],
     intro: "Técnica, estratégia e evolução para adultos, e uma turma kids que desenvolve confiança, coordenação, disciplina e respeito.",
     video: "assets/video-jiujitsu.mp4",
@@ -152,6 +155,7 @@ export const PAGINAS = [
     id: "muay-thai",
     nome: "Muay Thai",
     modalidades: ["muay-thai"],
+    preview: "assets/previews/muay-thai.mp4", // prévia curta da vitrine
     titulo: ["Força. Técnica.", "Controle."],
     intro: "Um treino intenso para desenvolver condicionamento, confiança, disciplina e resistência. Intensidade, técnica e foco em treinos que desafiam o corpo e fortalecem a mente.",
     video: "assets/video-muay-thai.mp4",
@@ -163,6 +167,7 @@ export const PAGINAS = [
     id: "funcional",
     nome: "Funcional",
     modalidades: ["funcional"],
+    preview: null, // ADICIONAR: assets/previews/funcional.mp4
     titulo: ["Movimento que", "vira disposição."],
     intro: "Treinos dinâmicos para desenvolver condicionamento, mobilidade, força e disposição.",
     video: null, // ADICIONAR: assets/video-funcional.mp4

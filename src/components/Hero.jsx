@@ -1,34 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { waLink } from "../config.js";
-import { PauseIcon, PlayIcon } from "./Icons.jsx";
-import { autoplay } from "./autoplay.js";
+import { useAutoVideo } from "./useAutoVideo.js";
 
-/* Abertura com o vídeo do ambiente. Não toca automaticamente para quem pediu
-   menos movimento ou está em conexão lenta / economia de dados. */
+/* Abertura com o vídeo do ambiente, tocando sozinho e sem som. */
 export default function Hero() {
   const ref = useRef(null);
-  const [playing, setPlaying] = useState(false);
-  const [allowed, setAllowed] = useState(true);
-
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const c = navigator.connection;
-    const slow = c && (c.saveData || /2g/.test(c.effectiveType || ""));
-    if (reduce || slow) { setAllowed(false); return; }
-    const v = ref.current;
-    if (!v) return;
-    v.src = "assets/video-ambiente.mp4";
-    return autoplay(v, () => setPlaying(true));
-  }, []);
-
-  const toggle = () => {
-    const v = ref.current;
-    if (!v) return;
-    v.muted = true;
-    if (!v.src) v.src = "assets/video-ambiente.mp4";
-    if (v.paused) v.play().then(() => setPlaying(true)).catch(() => {});
-    else { v.pause(); setPlaying(false); }
-  };
+  useAutoVideo(ref, "assets/video-ambiente.mp4", 0);
 
   return (
     <section className="hero" id="inicio" aria-label="Abertura">
@@ -38,8 +15,9 @@ export default function Hero() {
         poster="assets/images/ambiente-musculacao.jpg"
         muted
         loop
+        autoPlay
         playsInline
-        preload="metadata"
+        preload="auto"
         aria-hidden="true"
       />
       <div className="hero-shade" aria-hidden="true"></div>
@@ -59,16 +37,7 @@ export default function Hero() {
           <a className="btn btn-line btn-lg" href="#modalidades">Conhecer modalidades</a>
         </div>
       </div>
-      <button
-        className="hero-toggle"
-        type="button"
-        onClick={toggle}
-        aria-label={playing ? "Pausar vídeo de fundo" : "Reproduzir vídeo de fundo"}
-      >
-        {playing ? <PauseIcon /> : <PlayIcon />}
-        <span>{playing ? "Pausar" : allowed ? "Reproduzir" : "Ver vídeo"}</span>
-      </button>
-      <a className="scroll-cue" href="#imperium" aria-label="Rolar para a próxima seção">
+      <a className="scroll-cue" href="#modalidades" aria-label="Rolar para as modalidades">
         <span>Role</span><i aria-hidden="true"></i>
       </a>
     </section>

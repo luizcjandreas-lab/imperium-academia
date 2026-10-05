@@ -97,16 +97,12 @@ em { font-style: normal; color: var(--gold); }
 .hero h1 em { display: block; margin-top: 0.08em; }
 .hero-text { margin-top: 28px; max-width: 46ch; font-size: 1.15rem; color: #e2ddd3; }
 .hero .actions { margin-top: 36px; }
-.hero-toggle { position: absolute; right: 20px; bottom: 24px; display: inline-flex; align-items: center; gap: 8px; background: rgba(10,10,9,0.55); border: 1px solid rgba(243,239,231,0.3); color: var(--ivory); font: 600 0.75rem/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; padding: 10px 12px; cursor: pointer; border-radius: 2px; }
-.hero-toggle .ico { width: 16px; height: 16px; }
-.hero-toggle:hover { border-color: var(--gold); color: var(--gold); }
 .scroll-cue { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); display: grid; justify-items: center; gap: 8px; text-decoration: none; font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
 .scroll-cue i { width: 1px; height: 36px; background: linear-gradient(var(--gold), transparent); animation: cue 2.2s ease-in-out infinite; transform-origin: top; }
 @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
 @media (max-width: 640px) {
   .scroll-cue { display: none; }
-  .hero-toggle { bottom: 16px; right: auto; left: 20px; }
-  .hero .actions .btn { width: 100%; }
+    .hero .actions .btn { width: 100%; }
 }
 
 /* ---------- A Imperium ---------- */
@@ -166,12 +162,6 @@ em { font-style: normal; color: var(--gold); }
 
 .player { position: relative; z-index: 1; width: 100%; max-width: 100%; background: #000; overflow: hidden; }
 .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.play { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; background: linear-gradient(180deg, rgba(10,10,9,0.1), rgba(10,10,9,0.5)); border: 0; color: var(--ivory); cursor: pointer; }
-.play-ring { width: 84px; height: 84px; border-radius: 50%; border: 1px solid var(--gold); display: grid; place-items: center; background: rgba(10,10,9,0.45); transition: transform 0.3s, background 0.3s; }
-.play-ring .ico { width: 30px; height: 30px; color: var(--gold); margin-left: 4px; }
-.play:hover .play-ring { transform: scale(1.06); background: var(--gold); }
-.play:hover .play-ring .ico { color: var(--black); }
-.play-text { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; }
 
 .ambient { background: var(--coal); border-top: 1px solid var(--steel); padding-block: clamp(80px, 11vw, 140px); }
 .ambient-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -328,8 +318,8 @@ tbody th { font-family: var(--display); font-size: 1.4rem; text-transform: upper
 .tile { position: relative; display: block; overflow: hidden; min-height: 300px; text-decoration: none; background: var(--graphite); isolation: isolate; }
 .tile-media { position: absolute; inset: 0; z-index: -1; }
 .tile-media img, .tile-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.tile-media video { opacity: 0; transition: opacity 0.5s; }
-.tile:hover .tile-media video, .tile:focus-visible .tile-media video { opacity: 1; }
+.tile-media video { opacity: 0; transition: opacity 0.6s; }
+.tile-media video.is-on { opacity: 1; }
 .tile-media img { transition: transform 1s cubic-bezier(.2,.7,.2,1); }
 .tile:hover .tile-media img { transform: scale(1.05); }
 .tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,9,0.05) 35%, rgba(10,10,9,0.9)); }
@@ -366,11 +356,7 @@ tbody th { font-family: var(--display); font-size: 1.4rem; text-transform: upper
 .mhero h1 em { display: block; }
 .mhero-media { justify-self: center; width: min(100%, 400px); }
 .feature-video { margin: 0; position: relative; }
-.feature-video::before { content: ""; position: absolute; inset: -14px -14px 54px 14px; border: 1px solid var(--gold-line); }
-.fv-controls { position: relative; display: flex; gap: 8px; margin-top: 12px; }
-.fv-controls button { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(243,239,231,0.3); color: var(--ivory); font: 600 0.75rem/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; padding: 10px 12px; cursor: pointer; border-radius: 2px; }
-.fv-controls button:hover, .fv-controls button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
-.fv-controls .ico { width: 14px; height: 14px; }
+.feature-video::before { content: ""; position: absolute; inset: -14px -14px 44px 14px; border: 1px solid var(--gold-line); }
 .feature-video figcaption { position: relative; margin-top: 10px; font-size: 0.82rem; color: var(--muted); }
 .mod-placeholder-wrap { position: relative; }
 @media (max-width: 860px) {

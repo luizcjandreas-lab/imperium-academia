@@ -1,29 +1,21 @@
 import { useRef } from "react";
 import { PAGINAS } from "../config.js";
 import { Column } from "./Icons.jsx";
+import { useAutoVideo } from "./useAutoVideo.js";
 
-/* Vitrine das modalidades na página inicial. No computador, passar o mouse
-   toca uma prévia do vídeo sem som; no celular fica a foto. */
+/* Vitrine das modalidades. Cada modalidade toca uma prévia curta, sem som,
+   assim que aparece na tela (celular e computador) e ao passar o mouse. */
 export function Tile({ p, big }) {
   const ref = useRef(null);
-  const canHover = typeof window !== "undefined" && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  const reduce = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const enter = () => {
-    const v = ref.current;
-    if (!v || !p.video || !canHover || reduce) return;
-    if (!v.src) v.src = p.video;
-    v.muted = true;
-    v.play().catch(() => {});
-  };
-  const leave = () => { const v = ref.current; if (v && !v.paused) v.pause(); };
+  useAutoVideo(ref, p.preview, 0.3);
 
   return (
-    <a className={`tile reveal${big ? " is-big" : ""}`} href={`${p.id}.html`} onMouseEnter={enter} onMouseLeave={leave} onFocus={enter} onBlur={leave}>
+    <a className={`tile reveal${big ? " is-big" : ""}`} href={`${p.id}.html`} data-video-host>
       <div className="tile-media">
         {p.poster ? (
           <>
             <img src={p.poster} alt="" loading="lazy" width="480" height="848" />
-            {p.video && <video ref={ref} muted loop playsInline preload="none" aria-hidden="true" />}
+            {p.preview && <video ref={ref} poster={p.poster} muted loop autoPlay playsInline preload="none" aria-hidden="true" />}
           </>
         ) : (
           <div className="mod-placeholder" aria-hidden="true"><Column /></div>
