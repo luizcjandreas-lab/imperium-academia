@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PauseIcon, PlayIcon } from "./Icons.jsx";
+import { autoplay } from "./autoplay.js";
 
 /* Vídeo em destaque da página da modalidade: começa sozinho, sem som e em
    loop (exceto em conexão lenta ou com "reduzir movimento"); botões para
@@ -16,16 +17,17 @@ export default function FeatureVideo({ src, poster, label }) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const c = navigator.connection;
     const slow = c && (c.saveData || /2g/.test(c.effectiveType || ""));
+    let stop = () => {};
     if (!reduce && !slow) {
       v.src = src;
-      v.play().then(() => setPlaying(true)).catch(() => {});
+      stop = autoplay(v, () => setPlaying(true));
     }
-    if (!("IntersectionObserver" in window)) return;
+    if (!("IntersectionObserver" in window)) return stop;
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting && !v.paused) { v.pause(); setPlaying(false); }
     });
     io.observe(v);
-    return () => io.disconnect();
+    return () => { io.disconnect(); stop(); };
   }, [src]);
 
   const toggle = () => {

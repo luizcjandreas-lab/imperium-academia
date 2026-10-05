@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { waLink } from "../config.js";
 import { PauseIcon, PlayIcon } from "./Icons.jsx";
+import { autoplay } from "./autoplay.js";
 
 /* Abertura com o vídeo do ambiente. Não toca automaticamente para quem pediu
    menos movimento ou está em conexão lenta / economia de dados. */
@@ -16,9 +17,8 @@ export default function Hero() {
     if (reduce || slow) { setAllowed(false); return; }
     const v = ref.current;
     if (!v) return;
-    v.muted = true; // garante autoplay em celulares
     v.src = "assets/video-ambiente.mp4";
-    v.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+    return autoplay(v, () => setPlaying(true));
   }, []);
 
   const toggle = () => {
